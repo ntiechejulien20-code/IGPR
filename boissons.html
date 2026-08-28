@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<link rel="icon" type="image/png" href="img/favicon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boissons — Italian Green Place Restaurante</title>
+<meta name="description" content="La carte des boissons d'Italian Green Place : vins, champagnes, jus frais et cocktails.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="menu.css">
+<link rel="stylesheet" href="cart.css">
+</head>
+<body>
+
+<header class="site-header scrolled" id="siteHeader">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><img src="img/logo.png" alt="Italian Green Place"></span>
+      <span class="logo-text">Italian Green<br><em>Place Restaurante</em></span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html">Accueil</a>
+      <a href="menu.html">Menu</a>
+      <a href="boissons.html" class="active">Boissons</a>
+      <a href="desserts.html">Desserts</a>
+      <a href="contact.html">Contact</a>
+      <a href="reservation.html" class="mobile-cta">Réserver une table</a>
+    </nav>
+
+    <button class="cart-btn" id="cartBtn" aria-label="Voir le panier">
+      🛒<span class="cart-badge" id="cartBadge">0</span>
+    </button>
+
+    <a href="reservation.html" class="btn btn-primary nav-cta">Réserver une table</a>
+
+    <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="menu-hero" style="background-image:url('https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=1600&auto=format&fit=crop')">
+  <div class="menu-hero-inner">
+    <p class="eyebrow reveal">La cave</p>
+    <h1 class="reveal">Nos boissons</h1>
+    <p class="reveal menu-hero-text">Vins italiens, champagnes, jus frais et cocktails maison. Cliquez sur une bouteille pour découvrir ses caractéristiques.</p>
+
+    <div class="search-bar reveal">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="menuSearch" placeholder="Rechercher une boisson (ex : chianti, spritz, jus…)">
+    </div>
+  </div>
+</section>
+
+<div class="tricolore" aria-hidden="true"></div>
+
+<nav class="cat-tabs" id="catTabs">
+  <button class="cat-tab is-active" data-cat="all">Toute la cave</button>
+  <button class="cat-tab" data-cat="vins">Vins</button>
+  <button class="cat-tab" data-cat="champagnes">Champagnes</button>
+  <button class="cat-tab" data-cat="bieres">Bières</button>
+  <button class="cat-tab" data-cat="spiritueux">Spiritueux</button>
+  <button class="cat-tab" data-cat="cocktails">Cocktails</button>
+  <button class="cat-tab" data-cat="chaudes">Boissons chaudes</button>
+  <button class="cat-tab" data-cat="softs-jus">Softs &amp; Jus</button>
+  <button class="cat-tab" data-cat="eaux">Eaux</button>
+</nav>
+
+<main class="menu-main">
+  <p class="no-results" id="noResults">Aucune boisson ne correspond à votre recherche.</p>
+  <div class="dish-grid" id="dishGrid"></div>
+</main>
+
+<div class="dish-modal" id="dishModal">
+  <div class="dish-modal-card">
+    <button class="dish-modal-close" id="modalClose" aria-label="Fermer">&times;</button>
+    <div class="dish-modal-media">
+      <img id="modalImg" src="" alt="" loading="lazy">
+      <span class="dish-modal-price" id="modalPrice"></span>
+    </div>
+    <div class="dish-modal-body">
+      <p class="ticket-eyebrow" id="modalCat"></p>
+      <h2 id="modalName"></h2>
+      <p class="dish-modal-desc" id="modalDesc"></p>
+      <h4>Caractéristiques</h4>
+      <ul class="ingredient-list" id="modalIngredients"></ul>
+      <button class="modal-add" id="modalAddBtn">Ajouter au panier</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CART DRAWER ===== -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>Votre panier</h3>
+    <button class="cart-close" id="cartClose" aria-label="Fermer le panier">&times;</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-total-row">
+      <span>Total</span>
+      <strong id="cartTotalValue">0,00 €</strong>
+    </div>
+    <button class="cart-whatsapp" id="cartWhatsapp">📲 Commander via WhatsApp</button>
+  </div>
+</aside>
+
+<section class="cta-band reveal">
+  <div class="cta-band-inner">
+    <div>
+      <p class="eyebrow">Un verre en plus ?</p>
+      <h2>Réservez votre table dès maintenant</h2>
+    </div>
+    <a href="reservation.html" class="btn btn-primary">Réserver maintenant</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <a href="index.html" class="logo footer-logo">
+        <span class="logo-mark"><img src="img/logo.png" alt="Italian Green Place"></span>
+        <span class="logo-text">Italian Green<br><em>Place Restaurante</em></span>
+      </a>
+      <p>Cuisine orientale, billard et chicha réunis dans une même adresse.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <a href="menu.html">Menu</a>
+      <a href="boissons.html">Boissons</a>
+      <a href="desserts.html">Desserts</a>
+      <a href="reservation.html">Réservation</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Nous trouver</h4>
+      <p>Av. de los Parques de África<br>Malabo, Guinée équatoriale</p>
+      <p>téléphone : +240 222 999 090</p>
+      <p>[email@italiangreenplace.com]</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Horaires</h4>
+      <p>Mar – Dim : 08h00 – 23h30</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 Italian Green Place Restaurante. Tous droits réservés.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="boissons-data.js"></script>
+<script src="local-images.js"></script>
+<script src="cart.js"></script>
+<script src="boissons.js"></script>
+</body>
+</html>

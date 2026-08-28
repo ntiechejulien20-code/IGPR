@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<link rel="icon" type="image/png" href="img/favicon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Italian Green Place Restaurente</title>
+<meta name="description" content="Contactez Italian Green Place Restaurente : adresse, téléphone, horaires et formulaire de contact.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="forms.css">
+</head>
+<body>
+
+<header class="site-header scrolled" id="siteHeader">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><img src="img/logo.png" alt="Italian Green Place"></span>
+      <span class="logo-text">Italian Green<br><em>Place Restaurente</em></span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html">Accueil</a>
+      <a href="menu.html">Menu</a>
+      <a href="boissons.html">Boissons</a>
+      <a href="desserts.html">Desserts</a>
+      <a href="contact.html" class="active">Contact</a>
+      <a href="reservation.html" class="mobile-cta">Réserver une table</a>
+    </nav>
+
+    <a href="reservation.html" class="btn btn-primary nav-cta">Réserver une table</a>
+
+    <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="form-hero" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1600&auto=format&fit=crop')">
+  <div class="form-hero-inner">
+    <p class="eyebrow reveal">Contact</p>
+    <h1 class="reveal">Parlons-en</h1>
+    <p class="reveal form-hero-text">Une question, un événement à organiser, un retour à nous faire ? Écrivez-nous.</p>
+  </div>
+</section>
+
+<div class="tricolore" aria-hidden="true"></div>
+
+<div class="form-section">
+  <!-- ===== FORM CARD ===== -->
+  <div class="form-card reveal">
+    <div id="formWrapper">
+      <h2>Envoyez-nous un message</h2>
+      <p class="form-intro">Nous répondons généralement sous 24h.</p>
+
+      <form id="contactForm" novalidate>
+        <div class="field-row">
+          <div class="field" id="field-name">
+            <label for="cName">Nom complet *</label>
+            <input type="text" id="cName" name="name" placeholder="Marie Rossi">
+            <span class="field-error">Merci d'indiquer votre nom.</span>
+          </div>
+          <div class="field" id="field-email">
+            <label for="cEmail">Email *</label>
+            <input type="email" id="cEmail" name="email" placeholder="marie.rossi@email.com">
+            <span class="field-error">Merci d'indiquer un email valide.</span>
+          </div>
+        </div>
+
+        <div class="field" id="field-subject">
+          <label for="cSubject">Sujet *</label>
+          <select id="cSubject" name="subject">
+            <option value="">Sélectionner</option>
+            <option>Question générale</option>
+            <option>Organisation d'un anniversaire</option>
+            <option>Organisation d'un mariage</option>
+            <option>Privatisation salle billard / chicha</option>
+            <option>Presse / partenariat</option>
+            <option>Autre</option>
+          </select>
+          <span class="field-error">Merci de choisir un sujet.</span>
+        </div>
+
+        <div class="field" id="field-message">
+          <label for="cMessage">Message *</label>
+          <textarea id="cMessage" name="message" placeholder="Votre message…" style="min-height:140px;"></textarea>
+          <span class="field-error">Merci d'écrire un message.</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary form-submit">Envoyer le message</button>
+      </form>
+    </div>
+
+    <!-- ===== CONFIRMATION ===== -->
+    <div class="confirm-panel" id="confirmPanel">
+      <div class="confirm-icon">✓</div>
+      <h3>Message envoyé !</h3>
+      <p>Merci <span id="confirmName"></span>, votre message a bien été reçu. Notre équipe vous répond très vite.</p>
+      <button class="btn btn-ghost" id="newMessageBtn" style="color:var(--forest); border-color:var(--forest);">Envoyer un autre message</button>
+    </div>
+  </div>
+
+  <!-- ===== SIDE INFO ===== -->
+  <div class="reveal-right">
+    <div class="info-card">
+      <h3>Nos coordonnées</h3>
+      <div class="info-row">
+        <span class="icon">📍</span>
+        <p><strong>Adresse</strong>Av. de los Parques de África, Malabo, Guinée équatoriale</p>
+      </div>
+      <div class="info-row">
+        <span class="icon">📞</span>
+        <p><strong>Téléphone</strong> +240 222 999 090</p>
+      </div>
+      <div class="info-row">
+        <span class="icon">✉️</span>
+        <p><strong>Email</strong>[email@italiangreenplace.com]</p>
+      </div>
+      <div class="info-row">
+        <span class="icon">🕒</span>
+        <p><strong>Horaires</strong>Mar – Dim : 08h00 – 23h30</p>
+      </div>
+
+    </div>
+
+    <div class="map-embed" style="position:relative;">
+      <iframe src="https://www.google.com/maps?q=The+Green+Place+Restaurante,+Av.+de+los+Parques+de+%C3%81frica,+Malabo,+Guin%C3%A9e+%C3%A9quatoriale&output=embed" loading="lazy" title="Carte de localisation d'Italian Green Place"></iframe>
+      <a href="https://www.google.com/maps/dir/?api=1&destination=The+Green+Place+Restaurante,+Av.+de+los+Parques+de+%C3%81frica,+Malabo,+Guin%C3%A9e+%C3%A9quatoriale" target="_blank" rel="noopener" aria-label="Ouvrir l'itinéraire vers Italian Green Place" style="position:absolute; inset:0;"></a>
+    </div>
+    <p style="text-align:center; font-size:.82rem; color:#8a8474; margin-top:.6rem;">Cliquez sur la carte pour ouvrir l'itinéraire dans Google Maps</p>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <a href="index.html" class="logo footer-logo">
+        <span class="logo-mark"><img src="img/logo.png" alt="Italian Green Place"></span>
+        <span class="logo-text">Italian Green<br><em>Place Restaurente</em></span>
+      </a>
+      <p>Cuisine orientale, billard et chicha réunis dans une même adresse.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <a href="menu.html">Menu</a>
+      <a href="boissons.html">Boissons</a>
+      <a href="desserts.html">Desserts</a>
+      <a href="reservation.html">Réservation</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Nous trouver</h4>
+      <p>Av. de los Parques de África<br>Malabo, Guinée équatoriale</p>
+      <p>[Numéro de téléphone]</p>
+      <p>[email@italiangreenplace.com]</p>
+    </div>
+    <div class="footer-col">
+      <h4>Horaires</h4>
+      <p>Mar – Dim : 08h00 – 23h30</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Italian Green Place Restaurente. Tous droits réservés.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script src="contact.js"></script>
+</body>
+</html>

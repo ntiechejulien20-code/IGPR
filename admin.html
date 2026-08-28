@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - IGP</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  }
+  .box {
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px;
+    width: 100%;
+    max-width: 380px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  }
+  h1 { font-size: 22px; margin-bottom: 8px; color: #1a1a1a; }
+  p.sub { color: #777; margin-bottom: 24px; font-size: 14px; }
+  label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: #333; }
+  input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 15px;
+  }
+  input:focus { outline: none; border-color: #2e7d32; }
+  button {
+    width: 100%;
+    padding: 13px;
+    background: #2e7d32;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  button:hover { background: #256428; }
+  button:disabled { background: #999; cursor: not-allowed; }
+  #error {
+    color: #c62828;
+    font-size: 13px;
+    margin-top: 14px;
+    text-align: center;
+    display: none;
+  }
+  #dashboard { display: none; }
+  #dashboard h2 { margin-bottom: 6px; }
+  #dashboard .logout {
+    margin-top: 20px;
+    background: #eee;
+    color: #333;
+  }
+</style>
+</head>
+<body>
+
+<div class="box">
+  <div id="loginForm">
+    <h1>Espace Admin</h1>
+    <p class="sub">Restaurant IGPR - Connexion réservée</p>
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="admin@exemple.com">
+    <label for="password">Mot de passe</label>
+    <input type="password" id="password" placeholder="••••••••">
+    <button id="loginBtn">Se connecter</button>
+    <p id="error"></p>
+  </div>
+
+  <div id="dashboard">
+    <h2>Bienvenue 👋</h2>
+    <p class="sub">Tu es connecté en tant qu'admin.</p>
+    <p>C'est ici qu'on branchera la gestion du menu (ajout / modif / suppression des plats).</p>
+    <button class="logout" id="logoutBtn">Se déconnecter</button>
+  </div>
+</div>
+
+<script>
+  // --- Configuration Supabase ---
+  const SUPABASE_URL = 'https://cmzfchdovdfskbonwklh.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_3BVK2BptBX8sEt_5ME5IKQ_aVeSbR-F';
+  const sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  const loginForm = document.getElementById('loginForm');
+  const dashboard = document.getElementById('dashboard');
+  const errorEl = document.getElementById('error');
+  const loginBtn = document.getElementById('loginBtn');
+
+  function showError(msg) {
+    errorEl.textContent = msg;
+    errorEl.style.display = 'block';
+  }
+
+  async function checkIfAdminAndShow(user) {
+    // Vérifie que ce compte a bien is_admin = true dans la table profiles
+    const { data, error } = await sbClient
+      .from('profiles')
+      .select('is_admin')
+      .eq('id', user.id)
+      .single();
+
+    if (error || !data || data.is_admin !== true) {
+      await sbClient.auth.signOut();
+      showError("Ce compte n'a pas les droits admin.");
+      return;
+    }
+
+    loginForm.style.display = 'none';
+    dashboard.style.display = 'block';
+  }
+
+  // Si déjà connecté (session existante), on vérifie direct
+  sbClient.auth.getUser().then(({ data: { user } }) => {
+    if (user) checkIfAdminAndShow(user);
+  });
+
+  loginBtn.addEventListener('click', async () => {
+    errorEl.style.display = 'none';
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+
+    if (!email || !password) {
+      showError('Remplis email et mot de passe.');
+      return;
+    }
+
+    loginBtn.disabled = true;
+    loginBtn.textContent = 'Connexion...';
+
+    const { data, error } = await sbClient.auth.signInWithPassword({ email, password });
+
+    loginBtn.disabled = false;
+    loginBtn.textContent = 'Se connecter';
+
+    if (error) {
+      showError('Email ou mot de passe incorrect.');
+      return;
+    }
+
+    await checkIfAdminAndShow(data.user);
+  });
+
+  document.getElementById('logoutBtn').addEventListener('click', async () => {
+    await sbClient.auth.signOut();
+    dashboard.style.display = 'none';
+    loginForm.style.display = 'block';
+    document.getElementById('email').value = '';
+    document.getElementById('password').value = '';
+  });
+</script>
+
+</body>
+</html>
