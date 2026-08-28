@@ -96,7 +96,7 @@ h1,h2,h3{font-family: var(--font-display); color: var(--forest); font-weight:600
   box-shadow: 0 0 0 1px rgba(31,59,44,.12);
 }
 .logo-mark img{
-  width:100%; height:100%; object-fit:cover; display:block; border-radius : 8% ;
+  width:100%; height:100%; object-fit:cover; display:block; border-radius: 8%;
 }
 .site-header:not(.scrolled) .logo-text{ color:#fff; }
 .logo-text{
@@ -140,6 +140,7 @@ h1,h2,h3{font-family: var(--font-display); color: var(--forest); font-weight:600
   background: linear-gradient(180deg, rgba(15,26,19,.55) 0%, rgba(15,26,19,.35) 45%, rgba(15,26,19,.75) 100%);
 }
 .hero-content{
+  padding-top: 6rem;
   position:relative; z-index:2; color:#fff;
   max-width:680px; padding: 0 2rem; margin: 0 auto 0 8vw;
 }
